@@ -4,7 +4,7 @@ import { IsInstanceOf } from './is-instance-of';
 
 export function IsLocalDate(validationOptions?: ValidationOptions) {
   return IsInstanceOf(LocalDate, {
-    decoratorName: 'IsLocalDate',
+    decoratorName: 'isLocalDate',
     ...validationOptions,
   });
 }
