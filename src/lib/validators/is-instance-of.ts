@@ -1,11 +1,15 @@
 import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
 
-export function IsInstanceOf(targetType: Function, validationOptions?: ValidationOptions) {
+interface Options extends ValidationOptions {
+  readonly decoratorName?: string;
+}
+
+export function IsInstanceOf(targetType: Function, options?: Options) {
   return (object: object, propertyName: string) => {
     registerDecorator({
       constraints: [targetType],
-      name: 'IsInstanceOf',
-      options: validationOptions,
+      name: options?.decoratorName || 'isInstanceOf',
+      options: options,
       propertyName,
       target: object.constructor,
       validator: {

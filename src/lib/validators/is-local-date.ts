@@ -3,5 +3,8 @@ import { ValidationOptions } from 'class-validator';
 import { IsInstanceOf } from './is-instance-of';
 
 export function IsLocalDate(validationOptions?: ValidationOptions) {
-  return IsInstanceOf(LocalDate, validationOptions);
+  return IsInstanceOf(LocalDate, {
+    decoratorName: 'IsLocalDate',
+    ...validationOptions,
+  });
 }

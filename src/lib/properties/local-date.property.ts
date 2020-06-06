@@ -1,5 +1,5 @@
 import { ValidationOptions } from 'class-validator';
-import { IsLocalDate } from '../validators/is-local-date';
+import { IsLocalDate } from '../..';
 import { LocalDate } from '@js-joda/core';
 import { Transform, Type } from 'class-transformer';
 

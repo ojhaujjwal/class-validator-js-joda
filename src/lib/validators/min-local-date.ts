@@ -3,13 +3,13 @@ import { LocalDate } from '@js-joda/core';
 
 type LocalDateProvider = () => LocalDate;
 
-export function MinLocalDate(minDate: LocalDate | LocalDateProvider, validationOptions?: ValidationOptions) {
+export function MinLocalDate(minDateOrProvider: LocalDate | LocalDateProvider, validationOptions?: ValidationOptions) {
   return function(object: object, propertyName: string) {
     registerDecorator({
-      name: 'MinLocalDate',
+      name: 'minLocalDate',
       target: object.constructor,
       propertyName: propertyName,
-      constraints: [minDate],
+      constraints: [minDateOrProvider],
       options: validationOptions,
       validator: {
         validate: (value: any, args: ValidationArguments) => {
@@ -22,6 +22,12 @@ export function MinLocalDate(minDate: LocalDate | LocalDateProvider, validationO
 
           return value.compareTo(minDate) >= 0;
         },
+        defaultMessage(args: ValidationArguments): string {
+          const [minDateOrProvider] = args.constraints as unknown as readonly [LocalDate | LocalDateProvider];
+          const minDate = minDateOrProvider instanceof LocalDate ? minDateOrProvider : minDateOrProvider();
+
+          return `${args.property} must be greater than ${minDate.toString()}`;
+        }
       },
     });
   };
