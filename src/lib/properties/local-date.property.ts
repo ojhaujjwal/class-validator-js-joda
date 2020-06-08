@@ -1,4 +1,6 @@
-import curry from 'lodash.curry';
+import { ValidationOptions } from 'class-validator';
 import { JodaValueObjectProperty } from './joda-value-object.property';
 
-export const LocalDateProperty = curry(JodaValueObjectProperty)('localDate');
+export function LocalDateProperty(validationOptions?: ValidationOptions) {
+  return JodaValueObjectProperty('localDate', validationOptions)
+}
