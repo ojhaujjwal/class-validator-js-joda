@@ -1,6 +1,6 @@
 {
   "name": "class-validator-js-joda",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "class-validator + js-jod",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
