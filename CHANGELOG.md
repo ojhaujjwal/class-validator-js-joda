@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.7](https://github.com/ojhaujjwal/class-validator-js-joda/compare/v1.0.6...v1.0.7) (2020-06-16)
+- Adds `MinLocalDateTime` validation decorator
+
 ### [1.0.6](https://github.com/ojhaujjwal/class-validator-js-joda/compare/v1.0.4...v1.0.6) (2020-06-11)
 - Adds `MinLocalDate` validation decorator 
 
