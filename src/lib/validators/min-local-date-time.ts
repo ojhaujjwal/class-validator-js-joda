@@ -23,10 +23,10 @@ export function MinLocalDateTime(minDateTimeOrProvider: LocalDateTime | LocalDat
           return value.compareTo(minDateTime) >= 0;
         },
         defaultMessage(args: ValidationArguments): string {
-          const [minDateOrProvider] = args.constraints as unknown as readonly [LocalDateTime | LocalDateTimeProvider];
-          const minDate = minDateOrProvider instanceof LocalDateTime ? minDateOrProvider : minDateOrProvider();
+          const [minDateTimeOrProvider] = args.constraints as unknown as readonly [LocalDateTime | LocalDateTimeProvider];
+          const minDateTime = minDateTimeOrProvider instanceof LocalDateTime ? minDateTimeOrProvider : minDateTimeOrProvider();
 
-          return `${args.property} must be greater than ${minDate.toString()}`;
+          return `${args.property} must be greater than ${minDateTime.toString()}`;
         }
       },
     });
