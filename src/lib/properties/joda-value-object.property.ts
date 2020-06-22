@@ -16,16 +16,20 @@ const mapDecorators = {
 };
 
 export function JodaValueObjectProperty(valueObjectType: keyof typeof mapTypes, validationOptions?: ValidationOptions) {
+  const transformValueFn = (value: string) => {
+    try {
+      return mapTypes[valueObjectType].parse(value);
+    } catch (e) {
+      // will be marked as invalid by IsInstanceOf validator
+      return 'invalid date';
+    }
+  };
+
   return (object: object, propertyName: string) => {
     Transform(
-      (value) => {
-        try {
-          return mapTypes[valueObjectType].parse(value);
-        } catch (e) {
-          // will be marked as invalid by IsInstanceOf validator
-          return 'invalid date';
-        }
-      }
+      validationOptions?.each === true
+        ? (values: readonly string[]) => values.map(transformValueFn)
+        : transformValueFn,
     )(object, propertyName);
     mapDecorators[valueObjectType](
       {
